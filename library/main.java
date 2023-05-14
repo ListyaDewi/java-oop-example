@@ -13,7 +13,7 @@ class Main {
     while (isContinue.equals("y")) {
       showMenu();
       int selectedMenu = chooseMenu();
-
+      try{
       if (selectedMenu == 1) {
         showBooks();
       } else if (selectedMenu == 2) {
@@ -24,10 +24,14 @@ class Main {
         borrowBook();
       } else if (selectedMenu == 5) {
         returnBook();
+      } else if (selectedMenu == 6) {
+        addBook();
       } else {
-        System.out.println("wrong input");
+        throw new Exception("Pilih opsi di atas!");
       }
-
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
+    }
       System.out.print("continue ? ");
       isContinue = scan.next();
     }
@@ -40,6 +44,7 @@ class Main {
     System.out.println("3. add member");
     System.out.println("4. borrow book");
     System.out.println("5. return book");
+    System.out.println("6. add book");
     System.out.println("================================");
   }
 
@@ -68,13 +73,13 @@ class Main {
     member3.id = "3";
     member3.name = "tono";
 
-    library.books.add(book1);
-    library.books.add(book2);
-    library.books.add(book3);
+    library.getBooks().add(book1);
+    library.getBooks().add(book2);
+    library.getBooks().add(book3);
 
-    library.members.add(member1);
-    library.members.add(member2);
-    library.members.add(member3);
+    library.getMembers().add(member1);
+    library.getMembers().add(member2);
+    library.getMembers().add(member3);
   }
 
   public static int chooseMenu() {
@@ -84,7 +89,7 @@ class Main {
   }
 
   public static void showBooks() {
-    for (Book book : library.books) {
+    for (Book book : library.getBooks()) {
       System.out.println(book.id + " " + book.title);
     }
   }
@@ -92,7 +97,7 @@ class Main {
 //ini adalah commit pertama saya di github
 
   public static void showMembers() {
-    for (Member member : library.members) {
+    for (Member member : library.getMembers()) {
       System.out.println(member.id + " " + member.name);
     }
   }
@@ -109,6 +114,19 @@ class Main {
     member.name = scan.next();
 
     library.addMember(member);
+  }
+
+  public static void addBook() {
+    Book book = new Book();
+
+    System.out.print("id : ");
+    book.id = scan.next();
+
+    System.out.print("title : ");
+    book.title = scan.next();
+
+
+    library.addBook(book);
   }
 
   public static void borrowBook() {
