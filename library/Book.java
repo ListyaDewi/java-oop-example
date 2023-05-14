@@ -7,7 +7,7 @@ class Book {
   static ArrayList<Book> getBooks(){
     return books;
   }
-  public static void showBooks() {
+  public static void showBooks() { //ini merupakan method untuk polimorfisme di class main
     for (Book book : Book.getBooks()) {
       System.out.println("Buku yang dipinjam adalah : " + book.title);
     }

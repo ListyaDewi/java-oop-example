@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 class Library extends Member{
-  private ArrayList<Book> books = new ArrayList<Book>();
-  private ArrayList<Member> members = new ArrayList<Member>();
+  private ArrayList<Book> books = new ArrayList<Book>(); //ini merupakan encapsulation 
+  private ArrayList<Member> members = new ArrayList<Member>(); //ini merupakan encapsulation
   //inherit
 
   public ArrayList<Book> getBooks(){

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-interface Borrower {
+interface Borrower { //ini merupakan abstraksi 
   void receiveBook(Book book);
   void giveBook(Book book);
   Book getBookById(String bookId);

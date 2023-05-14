@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 class Main extends Book{
+  //ini merupakan inheritence dari class Book karena akan terjadi polimorfisme dari class Book
 
   static Scanner scan = new Scanner(System.in);
   static Library library = new Library();
@@ -34,7 +35,7 @@ class Main extends Book{
     }
       System.out.print("continue ? ");
       isContinue = scan.next();
-    }
+    } //ini merupakan try-catch yang digunakan untuk menangkap kesalahan input saat memilih menu yang nantinya akan mengeluarkan pesan message jika input melebihi pilihan yang tersedia
   }
 
   public static void showMenu() {
