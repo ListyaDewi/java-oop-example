@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Main {
+class Main extends Book{
 
   static Scanner scan = new Scanner(System.in);
   static Library library = new Library();
