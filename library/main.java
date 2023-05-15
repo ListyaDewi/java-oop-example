@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Main extends Book{
@@ -84,8 +85,19 @@ class Main extends Book{
   }
 
   public static int chooseMenu() {
-    System.out.print("choose menu : ");
-    int pilihan = scan.nextInt();
+    int pilihan = 0;
+    boolean validInput = false;
+
+    while (!validInput){
+      try{
+        System.out.print("choose menu : ");
+        pilihan = scan.nextInt();
+        validInput = true;
+    }catch (InputMismatchException e){
+      System.out.println("Invalid input");
+      scan.next();
+    }
+  }
     return pilihan;
   }
 
