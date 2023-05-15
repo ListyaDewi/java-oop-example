@@ -1,8 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class Main extends Book{
-  //ini merupakan inheritence dari class Book karena akan terjadi polimorfisme dari class Book
+class Main {
 
   static Scanner scan = new Scanner(System.in);
   static Library library = new Library();
@@ -52,28 +51,28 @@ class Main extends Book{
 
   public static void initLibraryData() {
     Book book1 = new Book();
-    book1.id = "1";
-    book1.title = "pemrograman java";
+    book1.setId("1");
+    book1.setTitle("pemrograman java");
 
     Book book2 = new Book();
-    book2.id = "2";
-    book2.title = "pemrograman oop";
+    book2.setId("2");
+    book2.setTitle("pemrograman oop");
 
     Book book3 = new Book();
-    book3.id = "3";
-    book3.title = "pemrograman android";
+    book3.setId("3");
+    book3.setTitle ("pemrograman android");
 
     Member member1 = new Member();
-    member1.id = "1";
-    member1.name = "aka";
+    member1.setId("1");
+    member1.setName("Rose");
 
     Member member2 = new Member();
-    member2.id = "2";
-    member2.name = "budi";
+    member2.setId ("2");
+    member2.setName ("Ellie");
 
     Member member3 = new Member();
-    member3.id = "3";
-    member3.name = "tono";
+    member3.setId ("3");
+    member3.setName("Joel");
 
     library.getBooks().add(book1);
     library.getBooks().add(book2);
@@ -87,7 +86,7 @@ class Main extends Book{
   public static int chooseMenu() {
     int pilihan = 0;
     boolean validInput = false;
-
+    
     while (!validInput){
       try{
         System.out.print("choose menu : ");
@@ -103,28 +102,26 @@ class Main extends Book{
 
   public static void showBooks() {
     for (Book book : library.getBooks()) {
-      System.out.println(book.id + " " + book.title);
+      book.display();
     }
   }
-
-//ini adalah commit pertama saya di github
 
   public static void showMembers() {
     for (Member member : library.getMembers()) {
-      System.out.println(member.id + " " + member.name);
+      member.display();
     }
   }
-
-  //testt
 
   public static void addMember() {
     Member member = new Member();
 
     System.out.print("id : ");
-    member.id = scan.next();
+    String id = scan.next();
+    member.setId(id);
 
     System.out.print("name : ");
-    member.name = scan.next();
+    String name = scan.next();
+    member.setName(name);
 
     library.addMember(member);
   }
@@ -133,10 +130,10 @@ class Main extends Book{
     Book book = new Book();
 
     System.out.print("id : ");
-    book.id = scan.next();
+    book.setId(scan.next());
 
     System.out.print("title : ");
-    book.title = scan.next();
+    book.setTitle(scan.next());
 
 
     library.addBook(book);

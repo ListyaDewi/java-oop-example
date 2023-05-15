@@ -1,16 +1,32 @@
 import java.util.ArrayList;
 
-interface Borrower { //ini merupakan abstraksi 
-  void receiveBook(Book book);
-  void giveBook(Book book);
-  Book getBookById(String bookId);
+abstract class User{
+    private String id;
+    private String name;
+
+    //encapsulation
+    public void setId(String id){
+        this.id = id;
+    }
+    public String getId(){
+        return id;
+    }
+    
+        public void setName(String name){
+            this.name = name;
+        }
+
+    public String getName(){
+        return name;
+    }
+
+    abstract void display();
 }
 
-class Member implements Borrower {
-  public String id;
-  public String name;
-  public ArrayList<Book> borrowedBooks = new ArrayList<Book>();
+class Member extends User{
 
+ public ArrayList<Book> borrowedBooks = new ArrayList<Book>();
+   
   public void receiveBook(Book book) {
     this.borrowedBooks.add(book);
   }
@@ -21,10 +37,15 @@ class Member implements Borrower {
 
   public Book getBookById(String bookId) {
     for (Book book : this.borrowedBooks) {
-      if (book.id.equals(id)) {
+      if (book.getId().equals(getId())) {
         return book;
       }
     }
     return null;
   }  
+
+  @Override
+  void display(){
+     System.out.println("ID " + getId() + " on behalf of " + getName());
+  }
 }

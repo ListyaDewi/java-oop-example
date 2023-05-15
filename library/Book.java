@@ -1,16 +1,31 @@
-import java.util.ArrayList;
+abstract class Identity {
+  private String id;
+  private String title;
 
-class Book {
-  private static ArrayList<Book> books = new ArrayList<Book>();
-  public String id;
-  public String title;
-  static ArrayList<Book> getBooks(){
-    return books;
+  public void setId(String id){
+    this.id = id;
   }
-  public static void showBooks() { //ini merupakan method untuk polimorfisme di class main
-    for (Book book : Book.getBooks()) {
-      System.out.println("Buku yang dipinjam adalah : " + book.title);
+
+  public String getId(){
+    return id;
+  }
+
+  public void setTitle(String title){
+    this.title = title;
+  }
+
+  String getTitle(){
+    return title;
+  }
+  abstract void display();
+
+  }
+
+  class Book extends Identity{
+    void display(){
+      System.out.println("ID " +getId() + " the title is " +getTitle());
     }
+
+
   }
-}
-//dari eclipse
+

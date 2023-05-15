@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 
-class Library extends Member{
-  private ArrayList<Book> books = new ArrayList<Book>(); //ini merupakan encapsulation 
-  private ArrayList<Member> members = new ArrayList<Member>(); //ini merupakan encapsulation
-  //inherit
+class Library {
+  private ArrayList<Book> books = new ArrayList<Book>();
+  private ArrayList<Member> members = new ArrayList<Member>();
 
   public ArrayList<Book> getBooks(){
     return this.books;
@@ -22,14 +21,14 @@ class Library extends Member{
     }
 
   public void addBook(Book book) {
-    if (!isBookIdExist(book.id)) {
+    if (!isBookIdExist(book.getId())) {
       this.books.add(book);
 }
   }
 	  public Boolean isBookIdExist(String id) {
 	    Boolean isExist = false;
 	    for (Book book : this.books) {
-	      if (book.id.equals(id)) {
+	      if (book.getId().equals(id)) {
 	        isExist = true;
 	      }
 	    }
@@ -38,7 +37,7 @@ class Library extends Member{
 
   
   public void addMember(Member member) {
-    if (!isMemberIdExist(member.id)) {
+    if (!isMemberIdExist(member.getId())) {
       this.members.add(member);
 }
   }
@@ -47,7 +46,7 @@ class Library extends Member{
   public Boolean isMemberIdExist(String id) {
     Boolean isExist = false;
     for (Member member : this.members) {
-      if (member.id.equals(id)) {
+      if (member.getId().equals(id)) {
         isExist = true;
       }
     }
@@ -81,7 +80,7 @@ class Library extends Member{
 
   private Member getMemberById(String id) {
     for (Member member : this.members) {
-      if (member.id.equals(id)) {
+      if (member.getId().equals(id)) {
         return member;
         }
       }
@@ -90,7 +89,7 @@ class Library extends Member{
 
   public Book getBookById(String id) {
     for (Book book : this.books) {
-      if (book.id.equals(id)) {
+      if (book.getId().equals(id)) {
         return book;
       }
     }
