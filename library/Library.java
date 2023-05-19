@@ -30,6 +30,7 @@ class Library {
 	    for (Book book : this.books) {
 	      if (book.getId().equals(id)) {
 	        isExist = true;
+          System.out.println("ID buku ini sudah terdaftar");
 	      }
 	    }
 	    return isExist;
@@ -48,6 +49,7 @@ class Library {
     for (Member member : this.members) {
       if (member.getId().equals(id)) {
         isExist = true;
+        System.out.println("Id member ini sudah terdaftar");
       }
     }
     return isExist;
@@ -65,12 +67,19 @@ class Library {
   public void receiveBook(String bookId, String memberId) {
     Member member = this.getMemberById(memberId);
     int memberIndex = this.getMemberIndex(member);
-
-    Book book = this.members.get(memberIndex).getBookById(bookId);
-
-    this.books.add(book);
-    this.members.get(memberIndex).borrowedBooks.remove(book);
-
+  try {
+  Book book = this.members.get(memberIndex).getBookById(bookId);
+  if (book == null){
+    System.out.println("Buku ini tidak dipinjam oleh member dengan ID " +memberId);
+    return;
+  }
+  book.setId(bookId);
+  this.books.add(book);
+  this.members.get(memberIndex).borrowedBooks.remove(book);
+  } catch (IndexOutOfBoundsException e) {
+  System.out.println("ID member tidak ada");
+  }
+    System.out.println("Buku ini berhasil dikembalikan");
   }
   
 
