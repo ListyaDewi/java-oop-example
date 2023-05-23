@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 class Library {
   private ArrayList<Book> books = new ArrayList<Book>();
+  private ArrayList<Book> jurnal = new ArrayList<Book>();
   private ArrayList<Member> members = new ArrayList<Member>();
 
   public ArrayList<Book> getBooks(){
@@ -33,6 +34,12 @@ class Library {
           System.out.println("ID buku ini sudah terdaftar");
 	      }
 	    }
+      for (Book book : this.jurnal) {
+	      if (book.getId().equals(id)) {
+	        isExist = true;
+          System.out.println("ID buku ini sudah terdaftar");
+	      }
+	    }
 	    return isExist;
 	  }
 
@@ -55,32 +62,37 @@ class Library {
     return isExist;
   }
 
-  public void giveBook(String bookId, String memberId) {
+  public void giveBook(String memberId, String bookId) {
     Book book = this.getBookById(bookId);
-    this.books.remove(book);
 
     Member member = this.getMemberById(memberId);
-    int memberIndex = this.getMemberIndex(member);
-    this.members.get(memberIndex).borrowedBooks.add(book);
+    if (member != null){
+      this.jurnal.add(book);
+      this.books.remove(book);
+      int memberIndex = this.getMemberIndex(member);
+      this.members.get(memberIndex).borrowedBooks.add(book);
+    }
+
   }
 
   public void receiveBook(String bookId, String memberId) {
+  try {
     Member member = this.getMemberById(memberId);
     int memberIndex = this.getMemberIndex(member);
-  try {
-  Book book = this.members.get(memberIndex).getBookById(bookId);
-  if (book == null){
-    System.out.println("Buku ini tidak dipinjam oleh member dengan ID " +memberId);
-    return;
+
+    Book book = this.members.get(memberIndex).getBookById(bookId);
+  if (book != null){
+    this.jurnal.remove(book);
+    this.books.add(book);
   }
-  book.setId(bookId);
-  this.books.add(book);
-  this.members.get(memberIndex).borrowedBooks.remove(book);
+    this.members.get(memberIndex).borrowedBooks.remove(book);
+    System.out.println("Buku ini tidak dipinjam oleh member dengan ID " +memberId);
   } catch (IndexOutOfBoundsException e) {
   System.out.println("ID member tidak ada");
   }
     System.out.println("Buku ini berhasil dikembalikan");
   }
+
   
 
   private int getMemberIndex(Member member) {

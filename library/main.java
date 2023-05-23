@@ -133,7 +133,8 @@ class Main {
     book.setId(scan.next());
 
     System.out.print("title : ");
-    book.setTitle(scan.next());
+    scan.next();
+    book.setTitle(scan.nextLine());
 
 
     library.addBook(book);
@@ -156,6 +157,6 @@ class Main {
     System.out.print("id book : ");
     String bookId = scan.next();
 
-    library.receiveBook(memberId, bookId);
+    library.receiveBook(bookId, memberId);
   }
 }
